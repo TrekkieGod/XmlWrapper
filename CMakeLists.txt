@@ -1,0 +1,23 @@
+cmake_minimum_required (VERSION 3.0)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules)
+project (XmlWrapper)
+
+include(CheckCXXCompilerFlag)
+check_cxx_compiler_flag(-Wall COMPILER_HAS_FLAG)
+if(COMPILER_HAS_FLAG)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
+endif()
+check_cxx_compiler_flag(-std=c++11 COMPILER_HAS_FLAG)
+if(COMPILER_HAS_FLAG)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+endif()
+check_cxx_compiler_flag(-mtune=native COMPILER_HAS_FLAG)
+if(COMPILER_HAS_FLAG)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mtune=native")
+endif()
+
+find_package(libxerces-c REQUIRED)
+
+add_subdirectory(XmlWrapper)
+add_subdirectory(XmlWrapperXerces)
+add_subdirectory(XmlWrapperTest)

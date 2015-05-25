@@ -1,0 +1,31 @@
+find_path(LIBXERCES-C_INCLUDE_DIR
+	  NAMES xercesc/util/XercesVersion.hpp
+	  PATHS ${XERCES-C_ROOT_DIR}
+	  PATH_SUFFIXES include
+	  NO_DEFAULT_PATH)
+
+find_path(LIBXERCES-C_INCLUDE_DIR
+	  NAMES xercesc/util/XercesVersion.hpp)
+
+find_library(LIBXERCES-C_LIBRARY
+	     NAMES xerces-c
+	     PATHS ${XERCES-C_ROOT_DIR}
+	     PATH_SUFFIXES lib64 lib32 lib
+	     NO_DEFAULT_PATH)
+
+find_library(LIBXERCES-C_LIBRARY
+	     NAMES xerces-c)
+
+include(FindPackageHandleStandardArgs)
+find_package_handle_standard_args(libxerces-c FOUND_VAR LIBXERCES-C_FOUND
+					      REQUIRED_VARS LIBXERCES-C_LIBRARY LIBXERCES-C_INCLUDE_DIR)
+
+if(LIBXERCES-C_FOUND)
+	set(LIBXERCES-C_LIBRARIES ${LIBXERCES-C_LIBRARY})
+	set(LIBXERCES-C_INCLUDE_DIRS ${LIBXERCES-C_INCLUDE_DIR})
+else(LIBXERCES-C_FOUND)
+	set(LIBXERCES-C_LIBRARIES)
+	set(LIBXERCES-C_INCLUDE_DIRS)
+endif(LIBXERCES-C_FOUND)
+
+mark_as_advanced(LIBXERCES-C_LIBRARY LIBXERCES-C_INCLUDE_DIR)
