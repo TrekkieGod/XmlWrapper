@@ -6,3 +6,8 @@ source_group("Headers" FILES ${XML_WRAPPER_HEADERS})
 source_group("Sources" FILES ${XML_WRAPPER_SOURCE})
 
 target_include_directories(XmlWrapper PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+
+check_cxx_compiler_flag(-fPIC COMPILER_HAS_FLAG)
+if(COMPILER_HAS_FLAG)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+endif()

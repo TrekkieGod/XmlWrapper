@@ -1,53 +1,35 @@
-#include "XercesParserHandler.h"
-
+#include "XDocument.h"
+#include <iostream>
 #include <string>
 
-#include <xercesc/sax2/SAX2XMLReader.hpp>
-#include <xercesc/sax2/XMLReaderFactory.hpp>
-
+using std::cerr;
+using std::endl;
 using std::string;
-using xercesc::XMLPlatformUtils;
-using xercesc::SAX2XMLReader;
-using xercesc::XMLReaderFactory;
-using xercesc::XMLUni;
+using std::shared_ptr;
+using XmlWrapper::XDocument;
 
-using namespace XmlParser;
-
-int main()
+enum ERROR_CODES
 {
-    try
-    {
-        XMLPlatformUtils::Initialize();
-    }
-    catch(...)
-    {
-        return 1;
-    }
+  UNKNOWN_ERROR = -1,
+  OK = 0,
+  INCORRECT_USAGE = 1
+};
 
-    string sXmlFile = "GasTurbineGenSet.vte";
-    SAX2XMLReader *pParser = XMLReaderFactory::createXMLReader();
-    pParser->setFeature(XMLUni::fgSAX2CoreValidation, true);
-    pParser->setFeature(XMLUni::fgSAX2CoreNameSpaces, true);
-
-    XercesParserHandler *pHandler = new XercesParserHandler();
-    pParser->setContentHandler(pHandler);
-    pParser->setErrorHandler(pHandler);
-
-    try
-    {
-        pParser->parse(sXmlFile.c_str());
-    }
-    catch(...)
-    {
-        delete pParser;
-        delete pHandler;
-        XMLPlatformUtils::Terminate();
-
-        return 2;
-    }
-
-    delete pParser;
-    delete pHandler;
-    XMLPlatformUtils::Terminate();
-    return 0;
+int main(int argc, char *argv[])
+{
+  if(argc == 1)
+  {
+    cerr << "USAGE:  " << argv[0] << " <xml_file_path>" << endl;
+    return INCORRECT_USAGE;
+  }
+  
+  try
+  {
+    shared_ptr<XDocument> pDocument = XDocument::Load("generator.vte");
+    return OK;
+  }
+  catch(...)
+  {
+    return UNKNOWN_ERROR;
+  }
 }

@@ -1,3 +1,4 @@
+#pragma once
 #include "XContainer.h"
 #include "XDeclaration.h"
 
