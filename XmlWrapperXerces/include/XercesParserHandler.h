@@ -14,6 +14,7 @@ namespace XmlWrapper
     void characters(const XMLCh* const chars, const XMLSize_t length) override;
     void fatalError(const xercesc::SAXParseException& excp) override;
   private:
-    std::shared_ptr<XDocument> m_pDocument;    
+    std::shared_ptr<XDocument> m_pDocument;
+    XElement *m_pProcessingElement;
   };
 }

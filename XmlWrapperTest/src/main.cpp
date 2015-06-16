@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
   
   try
   {
-    shared_ptr<XDocument> pDocument = XDocument::Load("generator.vte");
+    shared_ptr<XDocument> pDocument = XDocument::Load(argv[1]);
     return OK;
   }
   catch(...)

@@ -1,6 +1,6 @@
 #pragma once
-#include "XContainer.h"
 #include "XDeclaration.h"
+#include "XElement.h"
 
 #include <memory>
 
@@ -17,11 +17,14 @@ namespace XmlWrapper
     ~XDocument();
     
     const XDeclaration& getDeclaration() const;
+    XElement& getRoot() const;
     XmlNodeType::XmlNodeTypeEnum getNodeType() const override;
+    void Add(XNode& oNode) override;
     
     void setDeclaration(const XDeclaration& oDeclaration);
     
   private:
     XDeclaration *m_pDeclaration;
+    XElement *m_pRoot;
   };  
 }
