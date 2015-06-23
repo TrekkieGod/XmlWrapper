@@ -13,8 +13,8 @@ namespace XmlWrapper
     XNode& getFirstNode() const;
     XNode& getLastNode() const;
     
-    virtual void Add(std::shared_ptr<XNode> pNode);
+    virtual void Add(const XNode& pNode);
   private:
-    std::list< std::shared_ptr< XNode > > m_oChildren;
+    std::list< XNode* > m_oChildren;
   };
 }

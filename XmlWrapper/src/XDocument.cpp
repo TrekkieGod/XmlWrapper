@@ -38,12 +38,12 @@ XmlNodeType::XmlNodeTypeEnum XDocument::getNodeType() const
   return XmlNodeType::Document;
 }
 
-void XDocument::Add(XNode& oNode)
+void XDocument::Add(const XNode& oNode)
 {
   if(!m_pRoot && (oNode.getNodeType() == XmlNodeType::Element))
   {
     XContainer::Add(oNode);
-    m_pRoot = (XElement*)&oNode;
+    m_pRoot = (XElement*)&getFirstNode();
   }
 }
 
