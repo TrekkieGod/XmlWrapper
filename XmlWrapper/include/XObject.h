@@ -8,6 +8,9 @@ namespace XmlWrapper
   class XObject : public IXmlLineInfo
   {
   public:
+    XObject();
+    virtual ~XObject();
+    
     virtual XmlNodeType::XmlNodeTypeEnum getNodeType() const = 0;
     
     unsigned int getLineNumber() const override;

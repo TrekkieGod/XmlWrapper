@@ -1,10 +1,11 @@
 #pragma once
 
 #include "XObject.h"
+#include "ICloneable.h"
 
 namespace XmlWrapper
 {
-  class XNode : public XObject
+  class XNode : public XObject, protected ICloneable<XNode>
   {
   public:
     XNode();

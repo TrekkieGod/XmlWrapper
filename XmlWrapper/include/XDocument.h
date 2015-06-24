@@ -23,6 +23,9 @@ namespace XmlWrapper
     
     void setDeclaration(const XDeclaration& oDeclaration);
     
+  protected:
+    virtual XNode& clone() const override;
+    
   private:
     XDeclaration *m_pDeclaration;
     XElement *m_pRoot;

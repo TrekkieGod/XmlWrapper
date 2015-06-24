@@ -56,3 +56,8 @@ void XDocument::setDeclaration(const XDeclaration& oDeclaration)
   
   m_pDeclaration = new XDeclaration(oDeclaration);
 }
+
+XNode& XDocument::clone() const
+{
+  return *(new XDocument(*this));
+}
