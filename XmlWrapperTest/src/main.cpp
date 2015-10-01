@@ -2,11 +2,14 @@
 #include <iostream>
 #include <string>
 
+using std::cout;
 using std::cerr;
 using std::endl;
 using std::string;
 using std::shared_ptr;
+using std::exception;
 using XmlWrapper::XDocument;
+using XmlWrapper::XElement;
 
 enum ERROR_CODES
 {
@@ -26,10 +29,17 @@ int main(int argc, char *argv[])
   try
   {
     shared_ptr<XDocument> pDocument = XDocument::Load(argv[1]);
+    XElement &oRoot = pDocument->getRoot();
     return OK;
+  }
+  catch(exception& excp)
+  {
+    cerr << excp.what() << endl;
+    return UNKNOWN_ERROR;
   }
   catch(...)
   {
+    cerr << "An unknown problem has occurred." << endl;
     return UNKNOWN_ERROR;
   }
 }

@@ -1,4 +1,9 @@
 #include "XObject.h"
+#include "XDocument.h"
+#include "XElement.h"
+
+using XmlWrapper::XDocument;
+using XmlWrapper::XElement;
 
 XmlWrapper::XObject::XObject()
 {
@@ -9,7 +14,6 @@ XmlWrapper::XObject::XObject()
 
 XmlWrapper::XObject::~XObject()
 {
-
 }
 
 unsigned int XmlWrapper::XObject::getLineNumber() const
@@ -20,6 +24,16 @@ unsigned int XmlWrapper::XObject::getLineNumber() const
 unsigned int XmlWrapper::XObject::getLinePosition() const
 {
   return m_unLinePosition;
+}
+
+const XDocument& XmlWrapper::XObject::getDocument() const
+{
+  return *m_pDocument;
+}
+
+const XElement& XmlWrapper::XObject::getParent() const
+{
+  return *m_pParent;
 }
 
 bool XmlWrapper::XObject::hasLineInfo() const

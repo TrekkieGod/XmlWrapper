@@ -2,9 +2,13 @@
 
 #include "IXmlLineInfo.h"
 #include "XmlNodeType.h"
+#include <string>
 
 namespace XmlWrapper
 {
+  class XDocument;
+  class XElement;
+  
   class XObject : public IXmlLineInfo
   {
   public:
@@ -16,6 +20,9 @@ namespace XmlWrapper
     unsigned int getLineNumber() const override;
     unsigned int getLinePosition() const override;
     bool hasLineInfo() const override;
+    const std::string& getBaseUri() const;
+    const XDocument& getDocument() const;
+    const XElement& getParent() const;
     
   protected:
     void setLineNumber(unsigned int unLineNumber);
@@ -26,5 +33,8 @@ namespace XmlWrapper
     unsigned int m_unLineNumber;
     unsigned int m_unLinePosition;
     bool m_bHasLineInfo;
+    std::string m_sBaseUri;
+    XDocument* m_pDocument;
+    XElement* m_pParent;
   };
 }
