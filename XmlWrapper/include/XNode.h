@@ -9,12 +9,11 @@ namespace XmlWrapper
   {
   public:
     XNode();
-    virtual ~XNode();
-    XNode& getNextNode();
-    XNode& getPreviousNode();
+    std::weak_ptr<XNode> getNextNode();
+    std::weak_ptr<XNode> getPreviousNode();
     
   private:
-    XNode *m_pNextNode;
-    XNode *m_pPreviousNode;
+    std::weak_ptr<XNode> m_pNextNode;
+    std::weak_ptr<XNode> m_pPreviousNode;
   };
 }

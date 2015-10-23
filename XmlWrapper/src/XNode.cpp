@@ -1,21 +1,19 @@
 #include "XNode.h"
 
-XmlWrapper::XNode::XNode()
+using namespace XmlWrapper;
+using std::weak_ptr;
+
+XNode::XNode()
 {
 
 }
 
-XmlWrapper::XNode::~XNode()
+weak_ptr<XNode> XNode::getNextNode()
 {
-
+  return m_pNextNode;
 }
 
-XmlWrapper::XNode& XmlWrapper::XNode::getNextNode()
+weak_ptr<XNode> XNode::getPreviousNode()
 {
-
-}
-
-XmlWrapper::XNode& XmlWrapper::XNode::getPreviousNode()
-{
-
+  return m_pPreviousNode;
 }
