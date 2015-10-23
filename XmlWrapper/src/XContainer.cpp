@@ -1,5 +1,6 @@
 #include "XContainer.h"
 
+using std::shared_ptr;
 using namespace XmlWrapper;
 
 XContainer::XContainer()
@@ -11,17 +12,10 @@ XContainer::~XContainer()
 
 }
 
-void XContainer::Add(const XNode& pNode)
+shared_ptr<XNode> XContainer::getFirstNode() const
 {
-
 }
 
-XNode& XContainer::getFirstNode() const
+shared_ptr<XNode> XContainer::getLastNode() const
 {
-
-}
-
-XNode& XContainer::getLastNode() const
-{
-
 }

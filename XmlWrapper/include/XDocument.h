@@ -14,20 +14,18 @@ namespace XmlWrapper
   public:    
     XDocument();
     XDocument(const XDocument& oOriginalDocument);
-    ~XDocument();
     
-    const XDeclaration& getDeclaration() const;
-    XElement& getRoot() const;
+    std::shared_ptr<XDeclaration> getDeclaration() const;
+    std::shared_ptr<XElement> getRoot() const;
     XmlNodeType::XmlNodeTypeEnum getNodeType() const override;
-    void Add(const XNode& oNode) override;
     
-    void setDeclaration(const XDeclaration& oDeclaration);
+    void setDeclaration(std::shared_ptr<XDeclaration> oDeclaration);
     
   protected:
     virtual XNode& clone() const override;
     
   private:
-    XDeclaration *m_pDeclaration;
-    XElement *m_pRoot;
+    std::shared_ptr<XDeclaration> m_pDeclaration;
+    std::shared_ptr<XElement> m_pRoot;
   };  
 }

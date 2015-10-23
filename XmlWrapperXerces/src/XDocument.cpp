@@ -29,7 +29,7 @@ shared_ptr<XDocument> XDocument::Load(const string& sFilename)
   try
   {
       pParser->parse(sFilename.c_str());
-      pDocument->setDeclaration(XDeclaration("1.0", "utf-8", "no"));
+      pDocument->setDeclaration(make_shared<XDeclaration>("1.0", "utf-8", "no"));
   }
   catch(...)
   {

@@ -1,6 +1,7 @@
 #pragma once
 #include "XNode.h"
 #include <list>
+#include <memory>
 
 namespace XmlWrapper
 {
@@ -10,11 +11,9 @@ namespace XmlWrapper
     XContainer();
     virtual ~XContainer();
     
-    XNode& getFirstNode() const;
-    XNode& getLastNode() const;
-    
-    virtual void Add(const XNode& pNode);
+    std::shared_ptr<XNode> getFirstNode() const;
+    std::shared_ptr<XNode> getLastNode() const;
   private:
-    std::list< XNode* > m_oChildren;
+    std::list< std::shared_ptr<XNode> > m_oChildren;
   };
 }

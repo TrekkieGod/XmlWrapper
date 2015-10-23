@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
   try
   {
     shared_ptr<XDocument> pDocument = XDocument::Load(argv[1]);
-    XElement &oRoot = pDocument->getRoot();
+    shared_ptr<XElement> pRoot = pDocument->getRoot();
     return OK;
   }
   catch(exception& excp)

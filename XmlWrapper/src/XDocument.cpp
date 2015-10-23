@@ -1,6 +1,8 @@
 #include "XDocument.h"
 
 using std::string;
+using std::make_shared;
+using std::shared_ptr;
 using namespace XmlWrapper;
 
 XDocument::XDocument()
@@ -11,26 +13,18 @@ XDocument::XDocument()
 
 XDocument::XDocument(const XDocument& oOriginalDocument)
 {
-  m_pDeclaration = new XDeclaration(*oOriginalDocument.m_pDeclaration);
+  m_pDeclaration = make_shared<XDeclaration>(*oOriginalDocument.m_pDeclaration);
   m_pRoot = oOriginalDocument.m_pRoot;
 }
 
-XDocument::~XDocument()
+shared_ptr<XDeclaration> XDocument::getDeclaration() const
 {
-  if(m_pDeclaration)
-  {
-    delete m_pDeclaration;
-  }
+  return m_pDeclaration;
 }
 
-const XDeclaration& XDocument::getDeclaration() const
+shared_ptr<XElement> XDocument::getRoot() const
 {
-  return *m_pDeclaration;
-}
-
-XElement& XDocument::getRoot() const
-{
-  return *m_pRoot;
+  return m_pRoot;
 }
 
 XmlNodeType::XmlNodeTypeEnum XDocument::getNodeType() const
@@ -38,23 +32,9 @@ XmlNodeType::XmlNodeTypeEnum XDocument::getNodeType() const
   return XmlNodeType::Document;
 }
 
-void XDocument::Add(const XNode& oNode)
-{
-  if(!m_pRoot && (oNode.getNodeType() == XmlNodeType::Element))
-  {
-    XContainer::Add(oNode);
-    m_pRoot = (XElement*)&getFirstNode();
-  }
-}
-
-void XDocument::setDeclaration(const XDeclaration& oDeclaration)
-{
-  if(m_pDeclaration)
-  {
-    delete m_pDeclaration;
-  }
-  
-  m_pDeclaration = new XDeclaration(oDeclaration);
+void XDocument::setDeclaration(shared_ptr<XDeclaration> pDeclaration)
+{  
+  m_pDeclaration = pDeclaration;
 }
 
 XNode& XDocument::clone() const
