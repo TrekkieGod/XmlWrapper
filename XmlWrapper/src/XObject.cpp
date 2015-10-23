@@ -2,56 +2,56 @@
 #include "XDocument.h"
 #include "XElement.h"
 
-using XmlWrapper::XDocument;
-using XmlWrapper::XElement;
+using namespace XmlWrapper;
+using std::weak_ptr;
 
-XmlWrapper::XObject::XObject()
+XObject::XObject()
 {
   m_bHasLineInfo = false;
   m_unLineNumber = 0;
   m_unLinePosition = 0;
 }
 
-XmlWrapper::XObject::~XObject()
+XObject::~XObject()
 {
 }
 
-unsigned int XmlWrapper::XObject::getLineNumber() const
+unsigned int XObject::getLineNumber() const
 {
   return m_unLineNumber;
 }
 
-unsigned int XmlWrapper::XObject::getLinePosition() const
+unsigned int XObject::getLinePosition() const
 {
   return m_unLinePosition;
 }
 
-const XDocument& XmlWrapper::XObject::getDocument() const
+weak_ptr<XDocument> XObject::getDocument() const
 {
-  return *m_pDocument;
+  return m_pDocument;
 }
 
-const XElement& XmlWrapper::XObject::getParent() const
+weak_ptr<XElement> XObject::getParent() const
 {
-  return *m_pParent;
+  return m_pParent;
 }
 
-bool XmlWrapper::XObject::hasLineInfo() const
+bool XObject::hasLineInfo() const
 {
   return m_bHasLineInfo;
 }
 
-void XmlWrapper::XObject::setHasLineInfo(bool bHasLineInfo)
+void XObject::setHasLineInfo(bool bHasLineInfo)
 {
   m_bHasLineInfo = bHasLineInfo;
 }
 
-void XmlWrapper::XObject::setLineNumber(unsigned int unLineNumber)
+void XObject::setLineNumber(unsigned int unLineNumber)
 {
   m_unLineNumber = unLineNumber;
 }
 
-void XmlWrapper::XObject::setLinePosition(unsigned int unLinePosition)
+void XObject::setLinePosition(unsigned int unLinePosition)
 {
   m_unLinePosition = m_unLinePosition;
 }
